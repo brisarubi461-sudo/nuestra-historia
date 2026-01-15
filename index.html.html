@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Brisa & Asahel 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Great+Vibes&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:linear-gradient(180deg,#4b6cb7,#182848);
+  overflow:hidden;
+  color:white;
+}
+
+/* Pantallas */
+.pantalla{
+  display:none;
+  min-height:100vh;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  flex-direction:column;
+  padding:40px;
+}
+
+/* Animación suave */
+.fade-in{
+  opacity:0;
+  animation:fade 2.5s ease forwards;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+button{
+  background:#ff8fb1;
+  border:none;
+  padding:15px 30px;
+  border-radius:30px;
+  font-size:18px;
+  cursor:pointer;
+  color:white;
+}
+
+/* Corazones */
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* Tarjetas */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  max-width:1100px;
+}
+
+.card{
+  background:rgba(255,255,255,0.15);
+  border-radius:25px;
+  padding:20px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
+}
+
+.card img{
+  width:100%;
+  border-radius:20px;
+}
+
+.card p{
+  margin-top:10px;
+}
+
+/* Modal */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal-content{
+  background:white;
+  border-radius:25px;
+  max-width:800px;
+  max-height:80vh;
+  overflow-y:auto;
+  padding:35px;
+  line-height:1.8;
+  color:#333;
+  white-space:pre-line;
+  font-family:'Playfair Display',serif;
+}
+
+.close{
+  text-align:right;
+  cursor:pointer;
+  font-size:18px;
+  color:#ff5c8a;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA INICIO -->
+<div id="inicio" class="pantalla" style="display:flex;">
+  <h1 class="fade-in" style="font-family:'Great Vibes',cursive;font-size:70px;">
+    Brisa & Asahel 💘
+  </h1>
+
+  <p class="fade-in" style="margin-top:10px;font-size:14px;animation-delay:0.5s;">
+    16 de Enero 2024
+  </p>
+
+  <h2 class="fade-in" style="
+    margin:20px 0;
+    font-family:'Playfair Display',serif;
+    color:#ffd6e8;
+    animation-delay:1s;">
+    Feliz 2do aniversario, mi niño
+  </h2>
+
+  <button class="fade-in" style="animation-delay:1.6s;" onclick="mostrar('historia')">
+    Nuestra historia 💙
+  </button>
+</div>
+
+<!-- HISTORIA -->
+<div id="historia" class="pantalla">
+  <div class="cards">
+
+    <div class="card" onclick="abrirTexto(texto1)">
+      <img src="foto1.jpeg">
+      <p>Nuestro comienzo ✨</p>
+    </div>
+
+    <div class="card" onclick="abrirTexto(texto2)">
+      <img src="foto2.jpeg">
+      <p>El día que todo cambió 💙</p>
+    </div>
+
+    <div class="card" onclick="abrirTexto(texto3)">
+      <img src="foto3.jpeg">
+      <p>Nuestro primer beso 💫</p>
+    </div>
+
+    <div class="card" onclick="abrirTexto(texto4)">
+      <img src="foto4.jpeg">
+      <p>Lo que siento por ti 💖</p>
+    </div>
+
+  </div>
+
+  <button style="margin-top:40px;" onclick="mostrar('final')">
+    Siguiente 💙
+  </button>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="pantalla">
+  <h1 class="fade-in" style="font-family:'Great Vibes',cursive;font-size:90px;">
+    Te amo
+  </h1>
+
+  <p class="fade-in" style="margin-top:20px;font-size:20px;animation-delay:0.8s;">
+    por más años juntos, mi cielo
+  </p>
+
+  <p class="fade-in" style="margin-top:40px;animation-delay:1.6s;">
+    Siempre nosotros 🤍<br>
+    Con amor, Bri
+  </p>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="close" onclick="cerrar()">✕</div>
+    <div id="modalTexto"></div>
+  </div>
+</div>
+
+<script>
+function mostrar(id){
+  document.querySelectorAll('.pantalla').forEach(p=>p.style.display='none');
+  document.getElementById(id).style.display='flex';
+}
+
+function abrirTexto(t){
+  document.getElementById('modalTexto').innerText=t;
+  document.getElementById('modal').style.display='flex';
+}
+
+function cerrar(){
+  document.getElementById('modal').style.display='none';
+}
+
+/* Textos Completos*/
+const texto1 = `Todo empezó la primera vez que te vi en el front.
+Desde ese momento algo dentro de mí supo
+que no eras alguien cualquiera.
+Te vi y sin pensarlo dos veces te eché el ojo
+y pensé: “me gusta ese muchacho…
+ese muchacho va a ser mi novio”.
+
+No sabía cómo, ni cuándo,
+ni si siquiera iba a pasar,
+pero lo sentí tan fuerte que no pude ignorarlo.
+A pesar de que muchas te hablaban,
+yo seguí ahí, poco a poco,
+con nervios, con ilusión,
+con ganas de conocerte más.
+
+Desde el primer momento
+me atrapó tu forma de ser,
+tu sonrisa, tu mirada,
+y sin darme cuenta
+ya estabas ocupando un lugar
+muy especial en mi corazón.`;
+
+const texto2 = `El 27 de diciembre reuní todo el valor que tenía
+para mandarte mensaje por tu cumpleaños.
+Nunca imaginé que me ibas a responder,
+y mucho menos que a partir de ese mensaje
+empezaría algo tan bonito entre nosotros.
+
+A pesar de ser tu cumpleaños,
+de que estabas festejando
+y de que había muchas personas contigo,
+me seguías respondiendo
+y eso me hizo sentir especial.
+Hablar contigo se sentía tan natural,
+tan bonito, tan real.
+
+Cada mensaje me ilusionaba más
+y yo no podía creer que el chico
+que desde el inicio me había parecido
+demasiado guapo para mí,
+estuviera ahí, hablándome,
+conociéndome,
+sin saber que poco a poco
+me estaba enamorando.`;
+
+const texto3 = `Ese 7 de enero fue un día súper lindo,
+uno de esos días que se quedan guardados
+para siempre en el corazón.
+Fuimos a comer taquitos
+y sin darnos cuenta salimos sin pagar,
+hasta que regresamos riéndonos,
+muertos de pena, a arreglarlo.
+
+Después fuimos al circo,
+y ahí, sentados en una banquita en el lineal,
+pasó algo mágico.
+Nos dimos nuestro primer beso,
+uno que cambió todo,
+porque desde ahí
+nunca nos volvimos a soltar.
+
+Recuerdo que llegué a mi casa
+muy emocionada,
+feliz,
+con el corazón acelerado,
+contándoles a mis papás
+porque sentía que había vivido
+una historia de película.
+Desde ese día
+me enamoro de ti un poquito más,
+y conocerte siempre será
+uno de los recuerdos más bonitos
+de mi vida.`;
+
+const texto4 = `Te admiro profundamente, Asahel.
+Admiro la persona que eres,
+todo lo que has logrado
+y la forma tan bonita en la que ves la vida.
+Eres uno de mis más grandes ejemplos a seguir
+y me siento orgullosa de ti,
+siempre.
+
+Deseo un futuro contigo, de verdad.
+Tengo mi vida, mis sueños y mis planes
+pensados a tu lado,
+creciendo juntos,
+apoyándonos,
+soñando en grande.
+Siento que no fue casualidad conocernos,
+porque coincidimos de una manera tan bonita,
+como si nuestras almas
+se hubieran reconocido desde siempre.
+
+Aunque tengamos cosas distintas,
+son justo esas las que nos complementan.
+Deseo crecer contigo en todos los aspectos,
+reír contigo,
+aprender contigo,
+y seguir construyendo
+este amor tan nuestro.
+
+Te amo cada día más.
+Y espero que seamos hoy y siempre,
+juntos por toda la eternidad.
+
+Siempre nosotros,
+con amor,
+Bri 💙`;
+
+/* Corazones */
+setInterval(()=>{
+  const h=document.createElement('div');
+  h.className='heart';
+  h.innerText=Math.random()>0.5?'💙':'💗';
+  h.style.left=Math.random()*100+'vw';
+  h.style.bottom='0';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
